@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0.3//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todo_list.demo.mapper.TodolistMapper">
+
+    <select id="getTodos" resultType="com.todo_list.demo.dto.Todo">
+        select * from todos;
+    </select>
+
+    <insert id="createTodo" parameterType="com.todo_list.demo.dto.Todo" useGeneratedKeys="true" keyProperty="id">
+        insert into todos (title) values (#{title});
+    </insert>
+
+    <select id="findById" parameterType="Long" resultType="com.todo_list.demo.dto.Todo">
+        select * from todos where id = #{id};
+    </select>
+
+    <update id="updateTodo" parameterType="com.todo_list.demo.dto.Todo"  useGeneratedKeys="true" keyProperty="id">
+        update todos set completed = #{completed} where id = #{id}
+    </update>
+
+    <delete id="deleteTodo" parameterType="Long">
+        delete from todos where id=#{id}
+    </delete>
+</mapper>
